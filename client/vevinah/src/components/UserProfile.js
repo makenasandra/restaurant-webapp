@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {toast, ToastContainer} from 'react-toastify';
 import Carousel1 from '../assets/dineinphoto.jpg';
 
-const Register = () => {
+function UserProfile () {
     const [user, setUser] = useState({});
 
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
@@ -108,7 +108,7 @@ const Register = () => {
             <img src={image} alt="menu" className="background-image"/>
             <div className="card">
                 <div className="signup-form-dialogue">
-                    <h1 className="card-header">Sign up</h1>
+                    <h1 className="card-header">User Profile</h1>
                     <form className="container" onSubmit={handleSubmit}>
                         <div className="row">
                             {['First name', 'Last name', 'Email', 'Phone', 'Password', 'Confirm Password'].map(
@@ -166,12 +166,8 @@ const Register = () => {
                             autoClose={9000}/>
                         <div className="signup-footer">
                             <button type="submit" className="continue-shopping">
-                                {registrationSuccess ? 'Registered!' : 'Signup'}
+                               Update Profile
                             </button>
-                            or
-                            <Link to="/sign_in">
-                                <button className="continue-shopping">Login</button>
-                            </Link>
                         </div>
                     </form>
                 </div>
@@ -185,4 +181,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default UserProfile;

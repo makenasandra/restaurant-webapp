@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import Carousel1 from "../assets/dineinphoto.jpg";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const SignIn = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -19,6 +21,8 @@ const SignIn = () => {
 
   const proceedLogin = (e) => {
     e.preventDefault();
+    userCredentials.email = userCredentials.email.toLocaleLowerCase();
+
 
     if (validate()) {
       fetch("https://veni-vay2.onrender.com/login", {  
@@ -53,9 +57,10 @@ const SignIn = () => {
     const { email, password } = userCredentials;
     let result = true;
 
+
     if (!email || email.trim() === "") {
       result = false;
-      toast.warning("Please enter your email");
+      toast.warning("Please enter valid email");
     }
 
     if (!password || password.trim() === "") {
@@ -80,32 +85,36 @@ const SignIn = () => {
         <form onSubmit={proceedLogin} className="container">
           <div className="login-card">
             <div className="login-form-dialogue">
-            <h1 className="card-header">Login</h1>
+              <h1 className="card-header">Login</h1>
               <div className="form-group">
                 <label>
                   Email <span className="errmsg">*</span>
                 </label>
                 <input
-                  type="text"
-                  value={userCredentials.email}
-                  onChange={handleChange}
-                  name="email"
-                  className="form-control"
+                    type="text"
+                    value={userCredentials.email}
+                    onChange={handleChange}
+                    name="email"
+                    className="form-control"
+                    required
                 />
+                <ToastContainer position="top-center"/>
               </div>
               <div className="form-group">
                 <label>
                   Password <span className="errmsg">*</span>
                 </label>
                 <input
-                  type="password"
-                  value={userCredentials.password}
-                  onChange={handleChange}
-                  name="password"
-                  className="form-control"
+                    type="password"
+                    value={userCredentials.password}
+                    onChange={handleChange}
+                    name="password"
+                    className="form-control"
+                    required
                 />
               </div>
             </div>
+
             <div className="login-footer">
               <button type="submit" className="continue-shopping">
                 Login
@@ -113,7 +122,7 @@ const SignIn = () => {
               or
               <Link to="/sign_up">
                 <button className="continue-shopping">
-                Sign Up
+                  Sign Up
                 </button>
               </Link>
             </div>

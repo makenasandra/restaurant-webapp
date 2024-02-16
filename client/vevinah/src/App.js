@@ -12,6 +12,7 @@ import ContactUs from './components/ContactUs';
 import Cart from './components/Cart';
 import DineInForm from './components/DineInForm';
 import MpesaPaymentPage from './components/PaymentForm';
+import UserProfile from "./components/UserProfile";
 
 let isloggedIn = false;
 const token = localStorage.getItem("access_token");
@@ -65,6 +66,7 @@ function App() {
           <Route path="/mpesa_payment" element={<MpesaPaymentPage />} />
         </Route>
         <Route path="/dine-in" element={<DineInForm />} />
+        <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
     </Router>
   );

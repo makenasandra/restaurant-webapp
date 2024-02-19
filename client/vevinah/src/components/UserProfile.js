@@ -76,10 +76,10 @@ function UserProfile () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let formattedUser = formatUserInfo()
+        let formattedUser = formatUserInfo();
         console.log(JSON.stringify(formattedUser));
         if (validate()) {
-            fetch('https://veni-vay2.onrender.com/signup', {
+            fetch('https://veni-vay2.onrender.com/update-user', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -166,8 +166,12 @@ function UserProfile () {
                             autoClose={9000}/>
                         <div className="signup-footer">
                             <button type="submit" className="continue-shopping">
-                               Update Profile
+                               Update
                             </button>
+                            or
+                            <Link to="/menu">
+                                <button className="continue-shopping">Cancel</button>
+                            </Link>
                         </div>
                     </form>
                 </div>

@@ -4,6 +4,12 @@ import {Dropdown, NavDropdown} from 'react-bootstrap';
 import { ShoppingCart, User } from "react-feather";
 import logo from "../assets/chai-vevinah-logo.png";
 import { useEffect, useState } from "react";
+
+// let isLoggedIn = false;
+const token = localStorage.getItem("access_token");
+// if (token) {
+//     isLoggedIn = true;
+// }
 function Navbar() {
   const savedCart = localStorage.getItem("cart");
   const [cartItems, setCartItems] = useState(
@@ -11,6 +17,10 @@ function Navbar() {
   );
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+    if (token) {
+        setIsLoggedIn(setIsLoggedIn=> true);
+    }
 
   useEffect(() => {
     console.log(savedCart);
@@ -92,15 +102,16 @@ const UserDropdown = ({isLoggedIn, handleLogoutClick}) => {
   return (
       <ul className="dropdown-menu" >
         <li className="navlink">
-          <Link style={{textDecoration: "none", color: "#000000"}} to="/user-profile">
+
+          <Link style={{textDecoration: "none", color: "#000000"}} to= {isLoggedIn? "/user-profile" : "/sign_in"}>
             User Profile
           </Link>
         </li>
         <li className="navlink">
           {isLoggedIn?
-              <div style={{textDecoration: "none", color: "#000000"}}  onClick={handleLogoutClick}>
+              <Link style={{textDecoration: "none", color: "#000000"}}  onClick={handleLogoutClick} to={"/menu"}>
             Logout
-          </div>
+          </Link>
               :
               <Link style={{textDecoration: "none", color: "#000000"}} to="/sign_in">
                 Sign In/Sign Up
